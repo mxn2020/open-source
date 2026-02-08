@@ -1,0 +1,44 @@
+name: Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      project:
+        description: "Project to release"
+        required: true
+        type: choice
+        options:
+          - config-drift-detector
+          - pr-reviewer-bot
+          - dotenv-doctor
+          - feature-flag-service
+          - api-rate-limit-visualizer
+          - prompt-version-control
+          - model-output-evaluator
+          - timezone-safe-date-utils
+          - retry-with-backoff
+          - error-log-summarizer
+          - good-first-issue-generator
+      version:
+        description: "Version to release (e.g., 0.1.0)"
+        required: true
+        type: string
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Create release tag
+        run: |
+          git tag "${{ inputs.project }}/v${{ inputs.version }}"
+          git push origin "${{ inputs.project }}/v${{ inputs.version }}"
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: "${{ inputs.project }}/v${{ inputs.version }}"
+          name: "${{ inputs.project }} v${{ inputs.version }}"
+          body: "Release of ${{ inputs.project }} version ${{ inputs.version }}"
+          generate_release_notes: true
