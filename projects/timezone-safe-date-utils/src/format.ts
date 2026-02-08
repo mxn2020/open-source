@@ -1,22 +1,6 @@
 import type { SafeDate } from "./types.js";
 
 /**
- * Get a part value from a SafeDate using Intl.DateTimeFormat.
- */
-function getPart(
-  safeDate: SafeDate,
-  options: Intl.DateTimeFormatOptions,
-  type: Intl.DateTimeFormatPartTypes,
-): string {
-  const formatter = new Intl.DateTimeFormat("en-US", {
-    ...options,
-    timeZone: safeDate.timezone,
-  });
-  const parts = formatter.formatToParts(safeDate.utc);
-  return parts.find((p) => p.type === type)?.value ?? "";
-}
-
-/**
  * Format a SafeDate using a simple pattern string.
  *
  * Supported tokens: YYYY, MM, DD, HH, mm, ss, Z
@@ -79,23 +63,12 @@ export function toISOString(safeDate: SafeDate): string {
  * Format the date portion in the SafeDate's timezone using a locale.
  */
 export function toLocaleDateString(safeDate: SafeDate, locale?: string): string {
-  return getPart(
-    safeDate,
-    {
-      year: "numeric",
-      month: "2-digit",
-      day: "2-digit",
-    },
-    // Return the whole formatted string instead of a single part
-    "year",
-  )
-    ? new Intl.DateTimeFormat(locale ?? "en-US", {
-        timeZone: safeDate.timezone,
-        year: "numeric",
-        month: "2-digit",
-        day: "2-digit",
-      }).format(safeDate.utc)
-    : "";
+  return new Intl.DateTimeFormat(locale ?? "en-US", {
+    timeZone: safeDate.timezone,
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).format(safeDate.utc);
 }
 
 /**
