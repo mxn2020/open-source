@@ -1,0 +1,36 @@
+{
+  "name": "timezone-safe-date-utils",
+  "version": "0.1.0",
+  "description": "Timezone-safe date/time utility functions for TypeScript. Zero runtime dependencies.",
+  "type": "module",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest run",
+    "lint": "eslint src/ tests/",
+    "format": "prettier --check src/ tests/"
+  },
+  "keywords": [
+    "timezone",
+    "date",
+    "time",
+    "utc",
+    "intl",
+    "safe",
+    "typescript"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^5.7.0",
+    "vitest": "^3.2.1",
+    "eslint": "^9.27.0",
+    "@typescript-eslint/parser": "^8.33.0",
+    "@typescript-eslint/eslint-plugin": "^8.33.0",
+    "prettier": "^3.5.3"
+  }
+}
