@@ -1,0 +1,20 @@
+2024-01-15 08:00:00 INFO Application starting up
+2024-01-15 08:00:01 INFO Loading configuration from /etc/app/config.yml
+2024-01-15 08:00:02 INFO Connected to database at db.internal:5432
+2024-01-15 08:00:05 WARNING Disk usage at 85% on /var/log
+2024-01-15 08:01:00 INFO Health check passed
+2024-01-15 08:05:12 ERROR Connection refused to cache server at 10.0.0.5:6379
+2024-01-15 08:05:13 WARNING Falling back to local cache
+2024-01-15 08:10:00 INFO Request processed in 120ms
+2024-01-15 08:15:30 ERROR File not found: /var/data/export_20240115.csv
+2024-01-15 08:20:00 ERROR Connection refused to cache server at 10.0.0.5:6379
+2024-01-15 08:20:01 WARNING Falling back to local cache
+2024-01-15 08:25:00 INFO Scheduled job completed: cleanup
+2024-01-15 08:30:45 ERROR Permission denied: /var/log/secure
+2024-01-15 08:35:00 ERROR Connection timed out to api.external.com:443
+2024-01-15 08:40:00 WARNING Memory usage at 90%
+2024-01-15 08:45:00 INFO Request processed in 85ms
+2024-01-15 08:50:22 ERROR Out of memory: worker process 4521 killed
+2024-01-15 08:55:00 CRITICAL Database connection pool exhausted
+2024-01-15 09:00:00 INFO Application restarted after crash recovery
+2024-01-15 09:05:00 ERROR Syntax error in query: unexpected token near 'SELEC'
