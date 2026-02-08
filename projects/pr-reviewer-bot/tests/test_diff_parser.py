@@ -1,7 +1,6 @@
 """Tests for the diff parser module."""
 
-from pr_reviewer_bot.diff_parser import DiffFile, DiffHunk, parse_diff
-
+from pr_reviewer_bot.diff_parser import parse_diff
 
 SIMPLE_DIFF = """\
 diff --git a/hello.py b/hello.py

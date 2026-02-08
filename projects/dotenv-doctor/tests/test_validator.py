@@ -1,7 +1,7 @@
 """Tests for dotenv_doctor.validator."""
 
 from dotenv_doctor.parser import EnvEntry
-from dotenv_doctor.validator import Issue, Severity, validate_env
+from dotenv_doctor.validator import Severity, validate_env
 
 
 def _entry(key: str, value: str = "val", line: int = 1) -> EnvEntry:
@@ -88,16 +88,12 @@ class TestTemplateComparison:
     def test_no_template(self):
         entries = [_entry("A"), _entry("B")]
         issues = validate_env(entries)
-        template_issues = [
-            i for i in issues if "template" in i.message or "missing" in i.message
-        ]
+        template_issues = [i for i in issues if "template" in i.message or "missing" in i.message]
         assert template_issues == []
 
     def test_perfect_match(self):
         entries = [_entry("A"), _entry("B")]
         template = [_entry("A"), _entry("B")]
         issues = validate_env(entries, template)
-        template_issues = [
-            i for i in issues if "template" in i.message or "missing" in i.message
-        ]
+        template_issues = [i for i in issues if "template" in i.message or "missing" in i.message]
         assert template_issues == []

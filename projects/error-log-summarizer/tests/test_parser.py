@@ -5,7 +5,7 @@ from __future__ import annotations
 import json
 import textwrap
 
-from error_log_summarizer.parser import LogEntry, parse_log_file, _parse_line
+from error_log_summarizer.parser import parse_log_file, _parse_line
 
 
 class TestGenericFormat:
@@ -84,14 +84,18 @@ class TestSyslogFormat:
 
 class TestJsonFormat:
     def test_parse_basic(self):
-        line = json.dumps({"timestamp": "2024-01-15T10:30:00", "level": "error", "message": "db down"})
+        line = json.dumps(
+            {"timestamp": "2024-01-15T10:30:00", "level": "error", "message": "db down"}
+        )
         entry = _parse_line(line)
         assert entry is not None
         assert entry.level == "ERROR"
         assert entry.message == "db down"
 
     def test_parse_with_source(self):
-        line = json.dumps({"timestamp": "2024-01-15", "level": "WARNING", "message": "slow", "source": "api"})
+        line = json.dumps(
+            {"timestamp": "2024-01-15", "level": "WARNING", "message": "slow", "source": "api"}
+        )
         entry = _parse_line(line)
         assert entry is not None
         assert entry.source == "api"

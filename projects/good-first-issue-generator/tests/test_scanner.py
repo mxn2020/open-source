@@ -1,9 +1,8 @@
 """Tests for the scanner module."""
 
 import os
-import tempfile
 
-from good_first_issue_generator.scanner import CodeOpportunity, scan_directory
+from good_first_issue_generator.scanner import scan_directory
 
 
 def _write_file(directory: str, name: str, content: str) -> str:
@@ -45,7 +44,7 @@ class TestScanTodos:
         assert len(todos) >= 1
 
     def test_no_false_positive_on_regular_comment(self, tmp_path: str) -> None:
-        _write_file(str(tmp_path), "example.py", '# This is a regular comment\nx = 1\n')
+        _write_file(str(tmp_path), "example.py", "# This is a regular comment\nx = 1\n")
         results = scan_directory(str(tmp_path))
         todos = [r for r in results if r.type == "todo"]
         assert len(todos) == 0
@@ -145,9 +144,7 @@ class TestScanDirectoryOptions:
 
     def test_skips_pycache(self, tmp_path: str) -> None:
         os.makedirs(os.path.join(str(tmp_path), "__pycache__"))
-        _write_file(
-            str(tmp_path), "__pycache__/cached.py", "# TODO: hidden\n"
-        )
+        _write_file(str(tmp_path), "__pycache__/cached.py", "# TODO: hidden\n")
         results = scan_directory(str(tmp_path))
         todos = [r for r in results if r.type == "todo"]
         assert len(todos) == 0

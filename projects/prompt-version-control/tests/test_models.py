@@ -66,7 +66,9 @@ class TestPromptRecord:
 
     def test_to_dict(self):
         v = PromptVersion(version="1.0", content="test", created_at="2025-01-01T00:00:00+00:00")
-        r = PromptRecord(name="greeting", description="A greeting", versions=[v], tags={"prod": "1.0"})
+        r = PromptRecord(
+            name="greeting", description="A greeting", versions=[v], tags={"prod": "1.0"}
+        )
         d = r.to_dict()
         assert d["name"] == "greeting"
         assert d["description"] == "A greeting"

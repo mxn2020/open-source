@@ -85,18 +85,14 @@ def _check_invalid_key_names(entries: list[EnvEntry]) -> list[Issue]:
             key=entry.key,
             line_number=entry.line_number,
             severity=Severity.WARNING,
-            message=(
-                f"Key '{entry.key}' does not match [A-Z_][A-Z0-9_]* pattern"
-            ),
+            message=(f"Key '{entry.key}' does not match [A-Z_][A-Z0-9_]* pattern"),
         )
         for entry in entries
         if not _VALID_KEY.match(entry.key)
     ]
 
 
-def _check_template(
-    entries: list[EnvEntry], template: list[EnvEntry]
-) -> list[Issue]:
+def _check_template(entries: list[EnvEntry], template: list[EnvEntry]) -> list[Issue]:
     env_keys = {e.key for e in entries}
     template_keys = {t.key for t in template}
 

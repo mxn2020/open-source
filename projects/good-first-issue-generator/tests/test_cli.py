@@ -52,6 +52,7 @@ class TestScanCommand:
         result = runner.invoke(app, ["scan", str(tmp_path), "--max", "3", "--json"])
         assert result.exit_code == 0
         import json
+
         data = json.loads(result.output)
         assert len(data) <= 3
 

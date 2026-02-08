@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import json
-import sys
 from pathlib import Path
 from typing import Annotated, Optional
 
@@ -41,9 +40,15 @@ def _print_version_json(version, name: str | None = None) -> None:
 @app.command()
 def save(
     name: Annotated[str, typer.Argument(help="Name of the prompt")],
-    content: Annotated[Optional[str], typer.Option("--content", "-c", help="Prompt content")] = None,
-    file: Annotated[Optional[Path], typer.Option("--file", "-f", help="Read content from file")] = None,
-    meta: Annotated[Optional[list[str]], typer.Option("--meta", "-m", help="Metadata as key=value")] = None,
+    content: Annotated[
+        Optional[str], typer.Option("--content", "-c", help="Prompt content")
+    ] = None,
+    file: Annotated[
+        Optional[Path], typer.Option("--file", "-f", help="Read content from file")
+    ] = None,
+    meta: Annotated[
+        Optional[list[str]], typer.Option("--meta", "-m", help="Metadata as key=value")
+    ] = None,
     output_json: Annotated[bool, typer.Option("--json", help="Output as JSON")] = False,
 ) -> None:
     """Save a new version of a prompt."""
@@ -82,7 +87,9 @@ def save(
 @app.command()
 def get(
     name: Annotated[str, typer.Argument(help="Name of the prompt")],
-    version: Annotated[Optional[str], typer.Option("--version", "-v", help="Version number")] = None,
+    version: Annotated[
+        Optional[str], typer.Option("--version", "-v", help="Version number")
+    ] = None,
     tag: Annotated[Optional[str], typer.Option("--tag", "-t", help="Tag name")] = None,
     output_json: Annotated[bool, typer.Option("--json", help="Output as JSON")] = False,
 ) -> None:
@@ -97,7 +104,11 @@ def get(
     store.close()
 
     if result is None:
-        console.print(f"[yellow]Not found:[/yellow] {name}" + (f" version {version}" if version else "") + (f" tag {tag}" if tag else ""))
+        console.print(
+            f"[yellow]Not found:[/yellow] {name}"
+            + (f" version {version}" if version else "")
+            + (f" tag {tag}" if tag else "")
+        )
         raise typer.Exit(code=EXIT_NOT_FOUND)
 
     if output_json:
@@ -113,7 +124,9 @@ def get(
 
 @app.command("list")
 def list_cmd(
-    name: Annotated[Optional[str], typer.Option("--name", "-n", help="List versions of a specific prompt")] = None,
+    name: Annotated[
+        Optional[str], typer.Option("--name", "-n", help="List versions of a specific prompt")
+    ] = None,
     output_json: Annotated[bool, typer.Option("--json", help="Output as JSON")] = False,
 ) -> None:
     """List prompts or versions of a specific prompt."""
@@ -183,9 +196,7 @@ def tag(
     if output_json:
         console.print_json(json.dumps({"name": name, "version": version, "tag": tag_name}))
     else:
-        console.print(
-            f"[green]Tagged[/green] {name} v{version} as [bold]{tag_name}[/bold]"
-        )
+        console.print(f"[green]Tagged[/green] {name} v{version} as [bold]{tag_name}[/bold]")
 
 
 @app.command()

@@ -20,8 +20,7 @@ class PromptStore:
 
     def _create_tables(self) -> None:
         """Create the database tables if they don't exist."""
-        self._conn.executescript(
-            """
+        self._conn.executescript("""
             CREATE TABLE IF NOT EXISTS prompts (
                 name TEXT PRIMARY KEY,
                 description TEXT DEFAULT ''
@@ -44,8 +43,7 @@ class PromptStore:
                 PRIMARY KEY (name, tag),
                 FOREIGN KEY (name) REFERENCES prompts(name) ON DELETE CASCADE
             );
-            """
-        )
+            """)
         self._conn.execute("PRAGMA foreign_keys = ON")
         self._conn.commit()
 
@@ -59,9 +57,7 @@ class PromptStore:
             parent_version=row["parent_version"],
         )
 
-    def save(
-        self, name: str, content: str, metadata: dict | None = None
-    ) -> PromptVersion:
+    def save(self, name: str, content: str, metadata: dict | None = None) -> PromptVersion:
         """Save a new version of a prompt, auto-incrementing the version number."""
         metadata = metadata or {}
 
@@ -161,9 +157,7 @@ class PromptStore:
 
     def delete(self, name: str) -> bool:
         """Delete all versions of a prompt. Returns True if the prompt existed."""
-        row = self._conn.execute(
-            "SELECT name FROM prompts WHERE name = ?", (name,)
-        ).fetchone()
+        row = self._conn.execute("SELECT name FROM prompts WHERE name = ?", (name,)).fetchone()
         if row is None:
             return False
 

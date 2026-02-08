@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Annotated, Optional
+from typing import Annotated
 
 import typer
 from rich.console import Console
@@ -29,8 +29,14 @@ def _version_callback(value: bool) -> None:
 @app.callback()
 def main(
     version: Annotated[
-        Optional[bool],
-        typer.Option("--version", "-v", help="Show version and exit.", callback=_version_callback, is_eager=True),
+        bool | None,
+        typer.Option(
+            "--version",
+            "-v",
+            help="Show version and exit.",
+            callback=_version_callback,
+            is_eager=True,
+        ),
     ] = None,
 ) -> None:
     """Config Drift Detector — find differences between configuration sources."""
@@ -41,7 +47,9 @@ def check(
     a: Annotated[str, typer.Option("--a", help="Path to the first (baseline) config file.")],
     b: Annotated[str, typer.Option("--b", help="Path to the second (target) config file.")],
     output_json: Annotated[bool, typer.Option("--json", help="Output results as JSON.")] = False,
-    tags: Annotated[Optional[str], typer.Option("--tags", help="Comma-separated top-level keys to compare.")] = None,
+    tags: Annotated[
+        str | None, typer.Option("--tags", help="Comma-separated top-level keys to compare.")
+    ] = None,
 ) -> None:
     """Compare two configuration files and report any drift."""
     try:

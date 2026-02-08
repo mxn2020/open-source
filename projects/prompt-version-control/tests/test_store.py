@@ -1,8 +1,5 @@
 """Tests for the prompt store."""
 
-import os
-import tempfile
-
 import pytest
 
 from prompt_version_control.store import PromptStore

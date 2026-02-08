@@ -29,8 +29,7 @@ class ReviewComment:
 
 
 _SECRET_PATTERN = re.compile(
-    r"(?:api_key|apikey|password|passwd|secret|token)"
-    r"\s*[=:]\s*[\"']?[A-Za-z0-9+/=_\-]{8,}",
+    r"(?:api_key|apikey|password|passwd|secret|token)" r"\s*[=:]\s*[\"']?[A-Za-z0-9+/=_\-]{8,}",
     re.IGNORECASE,
 )
 

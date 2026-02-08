@@ -4,7 +4,6 @@ from __future__ import annotations
 
 from config_drift_detector.comparator import DriftItem, compare_configs, filter_by_tags
 
-
 # -- Basic comparison -------------------------------------------------------
 
 

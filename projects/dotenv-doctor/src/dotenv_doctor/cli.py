@@ -108,9 +108,7 @@ def compare(
         raise typer.Exit(code=1)
 
 
-def _print_compare_table(
-    differences: list[dict[str, str]], file1: Path, file2: Path
-) -> None:
+def _print_compare_table(differences: list[dict[str, str]], file1: Path, file2: Path) -> None:
     from rich.table import Table
 
     if not differences:

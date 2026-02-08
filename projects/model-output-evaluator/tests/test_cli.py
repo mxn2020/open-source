@@ -20,8 +20,9 @@ class TestEvaluateCommand:
         _write_json(preds_file, ["hello", "world"])
         _write_json(refs_file, ["hello", "world"])
 
-        result = runner.invoke(app, ["evaluate-cmd", "--predictions", str(preds_file),
-                                     "--references", str(refs_file)])
+        result = runner.invoke(
+            app, ["evaluate-cmd", "--predictions", str(preds_file), "--references", str(refs_file)]
+        )
         assert result.exit_code == 0
 
     def test_json_output(self, tmp_path):
@@ -30,8 +31,17 @@ class TestEvaluateCommand:
         _write_json(preds_file, ["hello"])
         _write_json(refs_file, ["hello"])
 
-        result = runner.invoke(app, ["evaluate-cmd", "--predictions", str(preds_file),
-                                     "--references", str(refs_file), "--json"])
+        result = runner.invoke(
+            app,
+            [
+                "evaluate-cmd",
+                "--predictions",
+                str(preds_file),
+                "--references",
+                str(refs_file),
+                "--json",
+            ],
+        )
         assert result.exit_code == 0
         data = json.loads(result.output)
         assert "results" in data
@@ -44,9 +54,19 @@ class TestEvaluateCommand:
         _write_json(preds_file, ["hello world"])
         _write_json(refs_file, ["hello"])
 
-        result = runner.invoke(app, ["evaluate-cmd", "--predictions", str(preds_file),
-                                     "--references", str(refs_file),
-                                     "--metrics", "exact_match,contains_match", "--json"])
+        result = runner.invoke(
+            app,
+            [
+                "evaluate-cmd",
+                "--predictions",
+                str(preds_file),
+                "--references",
+                str(refs_file),
+                "--metrics",
+                "exact_match,contains_match",
+                "--json",
+            ],
+        )
         assert result.exit_code == 0
         data = json.loads(result.output)
         assert data["avg_scores"]["contains_match"] == 1.0
@@ -58,8 +78,9 @@ class TestEvaluateCommand:
         _write_json(preds_file, ["hello", "world"])
         _write_json(refs_file, ["hello"])
 
-        result = runner.invoke(app, ["evaluate-cmd", "--predictions", str(preds_file),
-                                     "--references", str(refs_file)])
+        result = runner.invoke(
+            app, ["evaluate-cmd", "--predictions", str(preds_file), "--references", str(refs_file)]
+        )
         assert result.exit_code == 2
 
     def test_invalid_json(self, tmp_path):
@@ -68,8 +89,9 @@ class TestEvaluateCommand:
         preds_file.write_text("not json")
         _write_json(refs_file, ["hello"])
 
-        result = runner.invoke(app, ["evaluate-cmd", "--predictions", str(preds_file),
-                                     "--references", str(refs_file)])
+        result = runner.invoke(
+            app, ["evaluate-cmd", "--predictions", str(preds_file), "--references", str(refs_file)]
+        )
         assert result.exit_code == 2
 
     def test_non_string_array(self, tmp_path):
@@ -78,8 +100,9 @@ class TestEvaluateCommand:
         _write_json(preds_file, [1, 2, 3])
         _write_json(refs_file, ["a", "b", "c"])
 
-        result = runner.invoke(app, ["evaluate-cmd", "--predictions", str(preds_file),
-                                     "--references", str(refs_file)])
+        result = runner.invoke(
+            app, ["evaluate-cmd", "--predictions", str(preds_file), "--references", str(refs_file)]
+        )
         assert result.exit_code == 2
 
 
@@ -92,8 +115,10 @@ class TestCompareCommand:
         _write_json(b_file, ["hi", "world"])
         _write_json(refs_file, ["hello", "world"])
 
-        result = runner.invoke(app, ["compare", "--a", str(a_file), "--b", str(b_file),
-                                     "--references", str(refs_file)])
+        result = runner.invoke(
+            app,
+            ["compare", "--a", str(a_file), "--b", str(b_file), "--references", str(refs_file)],
+        )
         assert result.exit_code == 0
 
     def test_compare_json(self, tmp_path):
@@ -104,8 +129,19 @@ class TestCompareCommand:
         _write_json(b_file, ["world"])
         _write_json(refs_file, ["hello"])
 
-        result = runner.invoke(app, ["compare", "--a", str(a_file), "--b", str(b_file),
-                                     "--references", str(refs_file), "--json"])
+        result = runner.invoke(
+            app,
+            [
+                "compare",
+                "--a",
+                str(a_file),
+                "--b",
+                str(b_file),
+                "--references",
+                str(refs_file),
+                "--json",
+            ],
+        )
         assert result.exit_code == 0
         data = json.loads(result.output)
         assert "model_a" in data

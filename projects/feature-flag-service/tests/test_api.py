@@ -54,9 +54,7 @@ class TestCreateFlag:
         assert resp.status_code == 401
 
     def test_create_wrong_api_key(self, client):
-        resp = client.post(
-            "/api/flags", json={"name": "bad"}, headers={"X-API-Key": "wrong"}
-        )
+        resp = client.post("/api/flags", json={"name": "bad"}, headers={"X-API-Key": "wrong"})
         assert resp.status_code == 401
 
     def test_create_duplicate(self, client, auth_headers):
@@ -131,9 +129,7 @@ class TestUpdateFlag:
         assert resp.status_code == 401
 
     def test_update_nonexistent(self, client, auth_headers):
-        resp = client.put(
-            "/api/flags/nope", json={"enabled": True}, headers=auth_headers
-        )
+        resp = client.put("/api/flags/nope", json={"enabled": True}, headers=auth_headers)
         assert resp.status_code == 404
 
 

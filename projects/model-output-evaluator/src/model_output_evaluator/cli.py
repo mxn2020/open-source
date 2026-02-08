@@ -47,9 +47,7 @@ def evaluate_cmd(
         Optional[str],
         typer.Option("--metrics", "-m", help="Comma-separated list of metrics to use."),
     ] = None,
-    output_json: Annotated[
-        bool, typer.Option("--json", help="Output results as JSON.")
-    ] = False,
+    output_json: Annotated[bool, typer.Option("--json", help="Output results as JSON.")] = False,
 ) -> None:
     """Evaluate model predictions against reference outputs."""
     preds = _load_json_strings(predictions)
@@ -73,12 +71,8 @@ def evaluate_cmd(
 
 @app.command()
 def compare(
-    a: Annotated[
-        Path, typer.Option("--a", help="JSON file with first set of predictions.")
-    ],
-    b: Annotated[
-        Path, typer.Option("--b", help="JSON file with second set of predictions.")
-    ],
+    a: Annotated[Path, typer.Option("--a", help="JSON file with first set of predictions.")],
+    b: Annotated[Path, typer.Option("--b", help="JSON file with second set of predictions.")],
     references: Annotated[
         Path, typer.Option("--references", "-r", help="JSON file with reference strings.")
     ],
@@ -86,9 +80,7 @@ def compare(
         Optional[str],
         typer.Option("--metrics", "-m", help="Comma-separated list of metrics to use."),
     ] = None,
-    output_json: Annotated[
-        bool, typer.Option("--json", help="Output results as JSON.")
-    ] = False,
+    output_json: Annotated[bool, typer.Option("--json", help="Output results as JSON.")] = False,
 ) -> None:
     """Compare two sets of predictions against the same references."""
     preds_a = _load_json_strings(a)

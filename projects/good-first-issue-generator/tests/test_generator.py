@@ -1,6 +1,6 @@
 """Tests for the generator module."""
 
-from good_first_issue_generator.generator import IssueTemplate, generate_issues
+from good_first_issue_generator.generator import generate_issues
 from good_first_issue_generator.scanner import CodeOpportunity
 
 
@@ -28,32 +28,38 @@ class TestGenerateIssues:
         assert issues[0].difficulty == "easy"
 
     def test_generates_issue_from_missing_test(self) -> None:
-        opps = [_make_opp(
-            opp_type="missing_test",
-            description="no test file found for 'utils.py'",
-            difficulty="medium",
-        )]
+        opps = [
+            _make_opp(
+                opp_type="missing_test",
+                description="no test file found for 'utils.py'",
+                difficulty="medium",
+            )
+        ]
         issues = generate_issues(opps)
         assert len(issues) == 1
         assert "tests" in issues[0].title.lower() or "test" in issues[0].title.lower()
         assert "testing" in issues[0].labels
 
     def test_generates_issue_from_missing_docstring(self) -> None:
-        opps = [_make_opp(
-            opp_type="missing_docstring",
-            description="function 'calculate' is missing a docstring",
-        )]
+        opps = [
+            _make_opp(
+                opp_type="missing_docstring",
+                description="function 'calculate' is missing a docstring",
+            )
+        ]
         issues = generate_issues(opps)
         assert len(issues) == 1
         assert "docstring" in issues[0].title.lower()
         assert "documentation" in issues[0].labels
 
     def test_generates_issue_from_missing_type_hint(self) -> None:
-        opps = [_make_opp(
-            opp_type="missing_type_hint",
-            description="function 'calculate' is missing a return type hint",
-            difficulty="medium",
-        )]
+        opps = [
+            _make_opp(
+                opp_type="missing_type_hint",
+                description="function 'calculate' is missing a return type hint",
+                difficulty="medium",
+            )
+        ]
         issues = generate_issues(opps)
         assert len(issues) == 1
         assert "type hint" in issues[0].title.lower()

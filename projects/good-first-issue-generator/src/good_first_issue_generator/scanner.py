@@ -27,9 +27,7 @@ class CodeOpportunity:
     difficulty: str  # "easy", "medium"
 
 
-def _iter_source_files(
-    path: str, extensions: list[str]
-) -> list[str]:
+def _iter_source_files(path: str, extensions: list[str]) -> list[str]:
     """Walk the directory tree and yield source file paths, skipping common dirs."""
     results: list[str] = []
     for root, dirs, files in os.walk(path):
@@ -124,9 +122,7 @@ def _find_missing_type_hints(filepath: str, lines: list[str]) -> list[CodeOpport
     return opportunities
 
 
-def _find_missing_tests(
-    source_files: list[str], base_path: str
-) -> list[CodeOpportunity]:
+def _find_missing_tests(source_files: list[str], base_path: str) -> list[CodeOpportunity]:
     """Find source files that do not have corresponding test files."""
     opportunities: list[CodeOpportunity] = []
     test_basenames: set[str] = set()
@@ -158,9 +154,7 @@ def _find_missing_tests(
     return opportunities
 
 
-def scan_directory(
-    path: str, extensions: list[str] | None = None
-) -> list[CodeOpportunity]:
+def scan_directory(path: str, extensions: list[str] | None = None) -> list[CodeOpportunity]:
     """Scan a project directory for code improvement opportunities.
 
     Args:

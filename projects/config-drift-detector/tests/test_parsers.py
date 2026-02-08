@@ -6,7 +6,6 @@ import pytest
 
 from config_drift_detector.parsers import parse_file
 
-
 # -- YAML ------------------------------------------------------------------
 
 
