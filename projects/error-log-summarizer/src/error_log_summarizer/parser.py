@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import json
 import re
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 
 
 @dataclass
@@ -27,9 +27,7 @@ _SYSLOG_RE = re.compile(
 
 # Apache/Nginx: "[Wed Jan 15 10:30:00 2024] [error] something failed"
 _APACHE_RE = re.compile(
-    r"^\[(?P<timestamp>[^\]]+)\]\s+"
-    r"\[(?P<level>[^\]]+)\]\s+"
-    r"(?P<message>.+)$"
+    r"^\[(?P<timestamp>[^\]]+)\]\s+" r"\[(?P<level>[^\]]+)\]\s+" r"(?P<message>.+)$"
 )
 
 # Generic: "2024-01-15 10:30:00 ERROR something failed"
@@ -51,7 +49,14 @@ _LEVEL_NORMALIZE = {
 
 # Syslog messages that imply error-level severity
 _SYSLOG_ERROR_KEYWORDS = [
-    "error", "fail", "critical", "fatal", "segfault", "panic", "denied", "refused",
+    "error",
+    "fail",
+    "critical",
+    "fatal",
+    "segfault",
+    "panic",
+    "denied",
+    "refused",
 ]
 _SYSLOG_WARNING_KEYWORDS = ["warn", "timeout", "retry"]
 

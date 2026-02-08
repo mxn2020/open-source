@@ -1,9 +1,6 @@
 """Tests for the CLI interface."""
 
 import json
-import os
-import tempfile
-from unittest.mock import patch
 
 import pytest
 from typer.testing import CliRunner
@@ -66,9 +63,7 @@ class TestSaveCommand:
         assert result.exit_code == 2
 
     def test_save_invalid_metadata(self):
-        result = runner.invoke(
-            app, ["save", "greeting", "--content", "Hi", "--meta", "badformat"]
-        )
+        result = runner.invoke(app, ["save", "greeting", "--content", "Hi", "--meta", "badformat"])
         assert result.exit_code == 2
 
 

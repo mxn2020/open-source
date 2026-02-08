@@ -24,9 +24,7 @@ def report_text(issues: list[IssueTemplate]) -> str:
         console.print("[yellow]No good first issues found.[/yellow]")
         return console.export_text()
 
-    console.print(
-        f"\n[bold green]Found {len(issues)} Good First Issue(s)[/bold green]\n"
-    )
+    console.print(f"\n[bold green]Found {len(issues)} Good First Issue(s)[/bold green]\n")
 
     for i, issue in enumerate(issues, start=1):
         difficulty_color = "green" if issue.difficulty == "easy" else "yellow"

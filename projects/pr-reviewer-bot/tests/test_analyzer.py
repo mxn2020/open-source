@@ -1,6 +1,6 @@
 """Tests for the analyzer module."""
 
-from pr_reviewer_bot.analyzer import ReviewComment, Severity, analyze_diff
+from pr_reviewer_bot.analyzer import Severity, analyze_diff
 from pr_reviewer_bot.diff_parser import DiffFile
 
 

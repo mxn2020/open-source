@@ -27,6 +27,8 @@ dotenv-doctor = "dotenv_doctor.cli:app"
 
 [tool.ruff]
 line-length = 99
+
+[tool.ruff.lint]
 select = ["E", "F", "W", "I"]
 
 [tool.black]

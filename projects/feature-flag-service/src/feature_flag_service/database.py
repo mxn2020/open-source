@@ -28,8 +28,7 @@ class FlagDatabase:
     def _init_db(self) -> None:
         conn = self._get_conn()
         try:
-            conn.execute(
-                """
+            conn.execute("""
                 CREATE TABLE IF NOT EXISTS flags (
                     id TEXT PRIMARY KEY,
                     name TEXT UNIQUE NOT NULL,
@@ -40,8 +39,7 @@ class FlagDatabase:
                     created_at TEXT NOT NULL,
                     updated_at TEXT NOT NULL
                 )
-                """
-            )
+                """)
             conn.commit()
         finally:
             conn.close()

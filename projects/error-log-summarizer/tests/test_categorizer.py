@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from error_log_summarizer.categorizer import categorize_errors, summarize, Summary
+from error_log_summarizer.categorizer import categorize_errors, summarize
 from error_log_summarizer.parser import LogEntry
 
 

@@ -1,7 +1,6 @@
 """CLI interface for the Good First Issue Generator."""
 
 import os
-import sys
 from typing import Optional
 
 import typer
@@ -30,7 +29,11 @@ def version_callback(value: bool) -> None:
 @app.callback()
 def main(
     version: Optional[bool] = typer.Option(  # noqa: UP007
-        None, "--version", "-v", help="Show version and exit.", callback=version_callback,
+        None,
+        "--version",
+        "-v",
+        help="Show version and exit.",
+        callback=version_callback,
         is_eager=True,
     ),
 ) -> None:
@@ -40,9 +43,13 @@ def main(
 @app.command()
 def scan(
     directory: str = typer.Argument(..., help="Path to the project directory to scan."),
-    max_issues: int = typer.Option(10, "--max", "-m", help="Maximum number of issues to generate."),
+    max_issues: int = typer.Option(
+        10, "--max", "-m", help="Maximum number of issues to generate."
+    ),
     extensions: Optional[str] = typer.Option(  # noqa: UP007
-        None, "--extensions", "-e",
+        None,
+        "--extensions",
+        "-e",
         help="Comma-separated file extensions to scan (e.g., '.py,.ts,.js').",
     ),
     output_json: bool = typer.Option(False, "--json", "-j", help="Output results as JSON."),
@@ -57,8 +64,10 @@ def scan(
 
     ext_list: list[str] | None = None
     if extensions:
-        ext_list = [e.strip() if e.strip().startswith(".") else f".{e.strip()}"
-                    for e in extensions.split(",")]
+        ext_list = [
+            e.strip() if e.strip().startswith(".") else f".{e.strip()}"
+            for e in extensions.split(",")
+        ]
 
     try:
         opportunities = scan_directory(directory, extensions=ext_list)

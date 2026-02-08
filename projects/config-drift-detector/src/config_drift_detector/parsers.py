@@ -50,6 +50,8 @@ def parse_file(path: str) -> dict:
     if result is None:
         return {}
     if not isinstance(result, dict):
-        raise ValueError(f"Expected a mapping at the top level of {path}, got {type(result).__name__}")
+        raise ValueError(
+            f"Expected a mapping at the top level of {path}, got {type(result).__name__}"
+        )
 
     return result

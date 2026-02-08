@@ -1,9 +1,9 @@
 """Tests for dotenv_doctor.parser."""
 
-from dotenv_doctor.parser import EnvEntry, parse_line, parse_file
-from pathlib import Path
 import textwrap
-import tempfile
+from pathlib import Path
+
+from dotenv_doctor.parser import EnvEntry, parse_file, parse_line
 
 
 class TestParseLine:
@@ -75,8 +75,7 @@ class TestParseLine:
 class TestParseFile:
     def test_parse_valid_file(self, tmp_path: Path):
         env_file = tmp_path / ".env"
-        env_file.write_text(
-            textwrap.dedent("""\
+        env_file.write_text(textwrap.dedent("""\
                 # Database config
                 DATABASE_URL=postgres://localhost/db
                 SECRET_KEY="my-secret"
@@ -84,8 +83,7 @@ class TestParseFile:
                 # Feature flags
                 export ENABLE_FEATURE=true
                 EMPTY_KEY=
-            """)
-        )
+            """))
 
         entries = parse_file(env_file)
         assert len(entries) == 4

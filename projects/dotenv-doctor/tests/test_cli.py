@@ -1,7 +1,6 @@
 """Tests for dotenv_doctor.cli."""
 
 import json
-import textwrap
 from pathlib import Path
 
 from typer.testing import CliRunner
@@ -49,9 +48,7 @@ class TestCheckCommand:
     def test_check_template_not_found(self, tmp_path: Path):
         env_file = tmp_path / ".env"
         env_file.write_text("A=1\n")
-        result = runner.invoke(
-            app, ["check", str(env_file), "--template", str(tmp_path / "nope")]
-        )
+        result = runner.invoke(app, ["check", str(env_file), "--template", str(tmp_path / "nope")])
         assert result.exit_code == 2
 
 
