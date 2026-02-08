@@ -1,0 +1,22 @@
+diff --git a/src/app.py b/src/app.py
+index 1234567..abcdefg 100644
+--- a/src/app.py
++++ b/src/app.py
+@@ -1,8 +1,15 @@
+ import os
++import sys
+ 
+ def main():
+-    name = "world"
++    # TODO: read name from config
++    name = os.getenv("NAME", "world")
++    API_KEY = "sk-abc123secretkey99"
++    print(f"Hello, {name}!")
++    print("debug: starting app")
+     return 0
+ 
++def helper():
++    pass   
++
+ if __name__ == "__main__":
+     main()
