@@ -1,0 +1,23 @@
+{
+  "database": {
+    "host": "localhost",
+    "port": 5432,
+    "name": "myapp_db",
+    "ssl": false
+  },
+  "cache": {
+    "backend": "redis",
+    "host": "localhost",
+    "port": 6379,
+    "ttl": 300
+  },
+  "logging": {
+    "level": "info",
+    "format": "json",
+    "output": "stdout"
+  },
+  "feature_flags": {
+    "dark_mode": false,
+    "beta_api": true
+  }
+}

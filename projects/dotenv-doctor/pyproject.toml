@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dotenv-doctor"
+version = "0.1.0"
+description = "A CLI tool that validates and diagnoses .env files"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.12"
+dependencies = [
+    "typer>=0.12",
+    "rich>=13.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "pytest-cov",
+    "ruff",
+    "black",
+]
+
+[project.scripts]
+dotenv-doctor = "dotenv_doctor.cli:app"
+
+[tool.ruff]
+line-length = 99
+select = ["E", "F", "W", "I"]
+
+[tool.black]
+line-length = 99
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
