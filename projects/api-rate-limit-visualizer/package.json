@@ -20,7 +20,7 @@
     "react",
     "typescript"
   ],
-  "license": "MIT",
+  "license": "Apache-2.0",
   "dependencies": {
     "react": "^19.1.0",
     "react-dom": "^19.1.0",

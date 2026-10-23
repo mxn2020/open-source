@@ -7,7 +7,7 @@ name = "pr-reviewer-bot"
 version = "0.1.0"
 description = "A CLI tool that provides automated PR review suggestions by analyzing diffs."
 readme = "README.md"
-license = {text = "MIT"}
+license = {text = "Apache-2.0"}
 requires-python = ">=3.12"
 dependencies = [
     "typer>=0.12",
