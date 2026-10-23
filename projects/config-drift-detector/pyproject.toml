@@ -7,7 +7,7 @@ name = "config-drift-detector"
 version = "0.1.0"
 description = "Detect configuration drift between two sources (YAML, JSON, TOML)."
 readme = "README.md"
-license = "MIT"
+license = "Apache-2.0"
 requires-python = ">=3.12"
 authors = [
     { name = "Config Drift Detector Contributors" },
